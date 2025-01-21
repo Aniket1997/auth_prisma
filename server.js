@@ -1,6 +1,6 @@
 const express = require('express');
 const {serverConfig} = require('./src/config/index');
-const apiRouters = require('./src/router/authRoutes/index');
+const apiRouters = require('./src/router/index');
 const app = express();
 
 app.use(express.json());

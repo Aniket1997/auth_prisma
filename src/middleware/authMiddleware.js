@@ -1,11 +1,12 @@
 const jwt = require('jsonwebtoken');
+const {serverConfig} = require('../config/server-config');
 
 const authenticate = (req, res, next) => {
-  const token = req.header('Authorization')?.split(' ')[1];
-  if (!token) return res.status(401).json({ message: 'Access denied' });
+  const authHeaderToken = req.headers['authorization'].split(" ")[1];
+  if (!authHeaderToken) return res.status(401).json({ message: 'Access denied' });
 
   try {
-    const decoded = jwt.verify(token, 'secret');
+    const decoded = jwt.verify(authHeaderToken, serverConfig.JWT_TOKEN);
     req.user = decoded;
     next();
   } catch (error) {

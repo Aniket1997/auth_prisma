@@ -1,6 +1,5 @@
-const { PrismaClient } = require('@prisma/client');
-const {comparePassword,tokenGenerate,hashedPassword} = require('../util');
-const prisma = new PrismaClient();
+const { prisma } = require('../config/index');
+const {hashedPassword,comparePassword,tokenGenerate} = require('../util/index');
 
 const registerUser = async(req,res)=>{
     const { email, password, role } = req.body;
